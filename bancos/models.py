@@ -30,7 +30,7 @@ class Movimentacao(models.Model):
     data = models.DateField()
     documento = models.CharField(max_length=50)
     descricao = models.TextField()
-    tipo = models.CharField(max_length=1, choices=TIPO_CHOICES)
+    tipo = models.CharField(max_length=1, choices=TIPO_CHOICES, blank=False, null=False)
     valor = models.DecimalField(max_digits=15, decimal_places=2)
     data_cadastro = models.DateTimeField(auto_now_add=True)
 

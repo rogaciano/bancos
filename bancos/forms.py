@@ -13,6 +13,12 @@ class BancoForm(forms.ModelForm):
         }
 
 class MovimentacaoForm(forms.ModelForm):
+    tipo = forms.ChoiceField(
+        choices=[('C', 'Crédito'), ('D', 'Débito')],
+        widget=forms.RadioSelect(attrs={'class': 'form-check-input'}),
+        required=True
+    )
+
     class Meta:
         model = Movimentacao
         fields = ['data', 'documento', 'descricao', 'tipo', 'valor']
@@ -20,6 +26,5 @@ class MovimentacaoForm(forms.ModelForm):
             'data': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'documento': forms.TextInput(attrs={'class': 'form-control'}),
             'descricao': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
-            'tipo': forms.Select(attrs={'class': 'form-control'}),
             'valor': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
         }
