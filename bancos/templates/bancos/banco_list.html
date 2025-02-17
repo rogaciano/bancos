@@ -1,0 +1,50 @@
+{% extends 'bancos/base.html' %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2>Contas Bancárias</h2>
+    </div>
+    <div class="col text-end">
+        <a href="{% url 'banco_create' %}" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Nova Conta
+        </a>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Banco</th>
+                <th>Conta</th>
+                <th>Gerente</th>
+                <th>Contato</th>
+                <th>Saldo Atual</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for banco in bancos %}
+            <tr>
+                <td>{{ banco.nome }}</td>
+                <td>{{ banco.numero_conta }}</td>
+                <td>{{ banco.nome_gerente }}</td>
+                <td>{{ banco.contato_gerente }}</td>
+                <td class="text-{% if banco.saldo_atual >= 0 %}success{% else %}danger{% endif %}">
+                    R$ {{ banco.saldo_atual|floatformat:2 }}
+                </td>
+                <td>
+                    <a href="{% url 'movimentacao_list' banco.id %}" class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-list"></i> Movimentações
+                    </a>
+                    <a href="{% url 'banco_update' banco.id %}" class="btn btn-outline-secondary btn-sm">
+                        <i class="bi bi-pencil"></i> Editar
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

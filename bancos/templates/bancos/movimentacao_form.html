@@ -1,0 +1,25 @@
+{% extends 'bancos/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Nova Movimentação</h2>
+                <p class="text-muted">{{ banco.nome }} - {{ banco.numero_conta }}</p>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    
+                    <div class="mt-3">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        <a href="{% url 'movimentacao_list' banco.id %}" class="btn btn-outline-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
