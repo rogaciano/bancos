@@ -93,11 +93,12 @@ AXES_LOCKOUT_TIMEOUT = 30  # Lockout time in minutes
 AXES_RESET_ON_SUCCESS = True
 
 # Content Security Policy
-CSP_DEFAULT_SRC = ("'self'",)
-CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")  # Needed for Bootstrap
-CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'", "'unsafe-eval'")  # Needed for some JavaScript functionality
+CSP_DEFAULT_SRC = ("'self'", "'unsafe-inline'", "'unsafe-eval'", "https:", "data:")
+CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", "https:", "cdn.jsdelivr.net")
+CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'", "'unsafe-eval'", "https:", "cdn.jsdelivr.net")
 CSP_IMG_SRC = ("'self'", "data:", "https:")
-CSP_FONT_SRC = ("'self'", "https:", "data:")
+CSP_FONT_SRC = ("'self'", "https:", "data:", "cdn.jsdelivr.net")
+CSP_CONNECT_SRC = ("'self'", "https:")
 
 # Static files
 STATIC_URL = '/bancos/static/'
