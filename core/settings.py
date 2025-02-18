@@ -1,12 +1,12 @@
 from pathlib import Path
 import os
-from decouple import config
+from decouple import config, Csv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY', default='e%oni*++4k2znd(b^n-x*4=bwx@4mk&qh7ls&l9*2uxz&r+$11')
 
-DEBUG = False
+DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = ['144.202.29.245', 'localhost', '127.0.0.1']
 
