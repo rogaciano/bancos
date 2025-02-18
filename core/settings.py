@@ -100,12 +100,12 @@ CSP_IMG_SRC = ("'self'", "data:", "https:")
 CSP_FONT_SRC = ("'self'", "https:", "data:")
 
 # Static files
-STATIC_URL = '/vestuar/bancos/static/'
+STATIC_URL = '/bancos/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media files
-MEDIA_URL = '/vestuar/bancos/media/'
+MEDIA_URL = '/bancos/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -115,9 +115,9 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Security Settings
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=False, cast=bool)  # False em dev, True em prod
+SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', default=False, cast=bool)  # False em dev, True em prod
+CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=False, cast=bool)  # False em dev, True em prod
 
 # Additional Security Headers
 SECURE_HSTS_SECONDS = 31536000  # 1 year
@@ -134,4 +134,4 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_AGE = 3600  # 1 hour in seconds
 
 # Subpath configuration
-FORCE_SCRIPT_NAME = '/vestuar/bancos'
+FORCE_SCRIPT_NAME = config('FORCE_SCRIPT_NAME', default=None)  # None em dev, '/bancos' em prod
